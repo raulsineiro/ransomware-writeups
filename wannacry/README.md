@@ -32,16 +32,16 @@ Con la muestra identificada como GandCrab, se descarga la herramienta de descifr
 
 Abriendo la muestra en **IDA Free**, se localiza en la sección `.data` una referencia a una URL embebida (`aHttpWwwCcncert`), referenciada desde `WinMain`. Al inspeccionarla se obtiene la cadena completa:
 
-\```
+```
 http://www.ccncertnomorecryaadrtifaderesddferrrqdfwa.com
-\```
+```
 
 Este dominio corresponde al **kill switch** característico de WannaCry: el malware comprueba si el dominio resuelve antes de proceder con el cifrado, mecanismo que fue aprovechado en 2017 para detener la propagación real del brote.
 
-\```asm
+```asm
 .data:004313D0 aHttpWwwCcncert db 'http://www.ccncertnomorecryaadrtifaderesddferrrqdfwa.com',0
 .data:004313D0                                         ; DATA XREF: WinMain(x,x,x,x)+A1o
-\```
+```
 
 ## IOCs
 
@@ -58,12 +58,3 @@ Este dominio corresponde al **kill switch** característico de WannaCry: el malw
 | Data Encrypted for Impact | [T1486](https://attack.mitre.org/techniques/T1486/) | Cifrado de archivos del sistema |
 | Application Layer Protocol | [T1071](https://attack.mitre.org/techniques/T1071/) | Comprobación HTTP del dominio kill switch antes de cifrar |
 
-## Capturas
-
-> *(Pendiente: añadir capturas del IDA Free y de la resolución de cada apartado en `./screenshots/`)*
-
-## Referencias
-
-- [ID Ransomware](https://id-ransomware.malwarehunterteam.com/)
-- [NoMoreRansom](https://www.nomoreransom.org/)
-- [VirusTotal](https://www.virustotal.com)
