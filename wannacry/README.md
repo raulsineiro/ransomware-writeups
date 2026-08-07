@@ -36,6 +36,10 @@ Abriendo la muestra en **IDA Free**, se localiza en la sección `.data` una refe
 http://www.ccncertnomorecryaadrtifaderesddferrrqdfwa.com
 ```
 
+![Referencia a la URL del kill switch en IDA Free](../images/ida-killswitch.jpg)
+
+![Vista de datos con el dominio completo del kill switch resaltado](../images/ida-killswitch-data-view.jpg)
+
 Este dominio corresponde al **kill switch** característico de WannaCry: el malware comprueba si el dominio resuelve antes de proceder con el cifrado, mecanismo que fue aprovechado en 2017 para detener la propagación real del brote.
 
 ```asm
