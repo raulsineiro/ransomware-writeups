@@ -1,5 +1,5 @@
 # Análisis de ransomware — WannaCry
-**Fuente**: [Atenea — WannaCry Ransomware]((https://atenea.ccn-cert.cni.es/challenges?category=bsica-ransomware))
+**Fuente**: [Atenea — WannaCry Ransomware](https://atenea.ccn-cert.cni.es/challenges?category=bsica-ransomware)
 **Herramientas**: VirusTotal, ID Ransomware, NoMoreRansom, IDA Free
 
 ## Contexto
