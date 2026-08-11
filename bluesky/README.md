@@ -13,11 +13,15 @@ Investigación de una intrusión con despliegue final de ransomware **BlueSky**,
 
 Filtrando el tráfico TCP por intentos de conexión sin respuesta (`tcp.flags.syn==1 && tcp.flags.ack==0`), se identifica un escaneo de puertos masivo desde **`87.96.21.84`** contra **`87.96.21.81`**, con SYN dirigidos a múltiples puertos (80, 443, 445, 3389, 1433, 22, entre otros) en cuestión de milisegundos.
 
+![Escaneo de puertos](../images/paso1.jpg)
+
 ### 2. Acceso inicial — fuerza bruta contra SQL Server
 
 El objetivo del escaneo incluía el puerto **1433** (SQL Server). En el registro de eventos, la aplicación `MSSQLSERVER` registra un intento de login fallido contra la cuenta **`sa`** (cuenta de administrador por defecto de SQL Server), con origen `87.96.21.84`.
 
 Siguiendo el tráfico TDS (`tds.type == 16`, paquetes de login), se localizan dos intentos de autenticación. Inspeccionando el segundo paquete (`TDS7 Login Packet`) se extrae la contraseña utilizada: **`cyb3rd3f3nd3r$`** — el atacante obtuvo acceso válido a la instancia de SQL Server.
+
+![Contraseña SQL](../images/paso2.jpg)
 
 ### 3. Habilitación de ejecución de comandos del sistema
 
@@ -71,6 +75,9 @@ configurada para ejecutar un script PowerShell cada 4 horas con privilegios SYST
 ```
 C:\ProgramData\hashes.txt
 ```
+
+![Dump credenciales](../images/paso8.jpg)
+
 ### 9. Descubrimiento y movimiento lateral
 
 El script recupera el listado de hosts descubiertos en la red (`extracted_hosts.txt`) y, con las credenciales volcadas, ejecuta **`Invoke-SMBExec`** contra cada uno — movimiento lateral automatizado vía SMB.
@@ -87,6 +94,8 @@ DECRYPT FILES BLUESKY #.txt
 DECRYPT FILES BLUESKY #.html
 ```
 junto con ficheros cifrados con extensión `.bluesky`.
+
+![Payload](../images/paso10.jpg)
 
 ## IOCs
 
