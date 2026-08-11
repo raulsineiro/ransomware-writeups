@@ -48,28 +48,29 @@ Vía `xp_cmdshell`, el host comprometido descarga una serie de scripts y herrami
 
 Dentro de `checking.ps1`, la función `Disable-WindowsDefender` modifica el registro en `HKLM:\SOFTWARE\Microsoft\Windows Defender`, estableciendo a `1` las siguientes claves:
 
+```powershell
 DisableAntiSpyware
 DisableRoutinelyTakingAction
 DisableRealtimeMonitoring
 SubmitSamplesConsent
 SpynetReporting
-
+```
 Adicionalmente detiene y deshabilita el servicio `WinDefend`.
 
 ### 7. Persistencia
 
 Se crea una tarea programada para mantener acceso recurrente:
-
+```
 \Microsoft\Windows\MUI\LPupdate
-
+```
 configurada para ejecutar un script PowerShell cada 4 horas con privilegios SYSTEM.
 
 ### 8. Dump de credenciales
 
 `ichigo-lite.ps1` descarga y ejecuta **`Invoke-PowerDump.ps1`** (herramienta pública de la suite PowerSploit), volcando los hashes de contraseñas locales al fichero:
-
+```
 C:\ProgramData\hashes.txt
-
+```
 ### 9. Descubrimiento y movimiento lateral
 
 El script recupera el listado de hosts descubiertos en la red (`extracted_hosts.txt`) y, con las credenciales volcadas, ejecuta **`Invoke-SMBExec`** contra cada uno — movimiento lateral automatizado vía SMB.
@@ -81,10 +82,10 @@ Finalmente se descarga el payload **`javaw.exe`** (nombre que imita al binario l
 El análisis de la muestra en VirusTotal confirma **63/70 motores** detectándola como maliciosa, con la etiqueta de amenaza **`ransomware.bluesky/conti`** — BlueSky es una familia derivada del código fuente filtrado de Conti en 2022. El binario emplea resolución dinámica de APIs (sin Import Address Table), process masquerading, técnicas anti-VM vía CPUID y ofuscación de strings en tiempo de ejecución.
 
 El análisis de comportamiento (sandbox de VirusTotal) confirma el despliegue de las notas de rescate:
-
+```
 DECRYPT FILES BLUESKY #.txt
 DECRYPT FILES BLUESKY #.html
-
+```
 junto con ficheros cifrados con extensión `.bluesky`.
 
 ## IOCs
