@@ -103,7 +103,6 @@ junto con ficheros cifrados con extensión `.bluesky`.
 |------|-------|
 | IP atacante / C2 | `87.96.21.84` |
 | IP host comprometido | `87.96.21.81` |
-| Cuenta objetivo | `sa` (SQL Server) |
 | URL — script inicial | `http://87.96.21.84/checking.ps1` |
 | URL — evasión de defensas | `http://87.96.21.84/del.ps1` |
 | URL — orquestador | `http://87.96.21.84/ichigo-lite.ps1` |
@@ -114,9 +113,8 @@ junto con ficheros cifrados con extensión `.bluesky`.
 | Fichero — hosts descubiertos | `extracted_hosts.txt` |
 | Payload | `C:\ProgramData\javaw.exe` |
 | Tarea de persistencia | `\Microsoft\Windows\MUI\LPupdate` |
-| Nota de rescate | `# DECRYPT FILES BLUESKY #.txt` / `.html` |
+| Nota de rescate | `# DECRYPT FILES BLUESKY #` |
 | Extensión de cifrado | `.bluesky` |
-| Familia | BlueSky (derivado de Conti) |
 
 ## Mapeo MITRE ATT&CK
 
