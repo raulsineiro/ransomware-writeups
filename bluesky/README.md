@@ -88,12 +88,7 @@ Finalmente se descarga el payload **`javaw.exe`** (nombre que imita al binario l
 
 El análisis de la muestra en VirusTotal confirma **63/70 motores** detectándola como maliciosa, con la etiqueta de amenaza **`ransomware.bluesky/conti`** — BlueSky es una familia derivada del código fuente filtrado de Conti en 2022. El binario emplea resolución dinámica de APIs (sin Import Address Table), process masquerading, técnicas anti-VM vía CPUID y ofuscación de strings en tiempo de ejecución.
 
-El análisis de comportamiento (sandbox de VirusTotal) confirma el despliegue de las notas de rescate:
-```
-DECRYPT FILES BLUESKY #.txt
-DECRYPT FILES BLUESKY #.html
-```
-junto con ficheros cifrados con extensión `.bluesky`.
+El análisis de comportamiento (sandbox de VirusTotal) confirma el despliegue de la nota de rescate `# DECRYPT FILES BLUESKY #`, junto con ficheros cifrados con extensión `.bluesky`.
 
 ![Payload](../images/paso10.jpg)
 
