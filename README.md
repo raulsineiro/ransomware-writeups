@@ -1,4 +1,4 @@
-# Ransomware Writeups
+# 📝 Ransomware Writeups
 
 Análisis y resolución de retos de identificación y respuesta ante ransomware, incluyendo triage de muestras, correlación de IOCs y análisis estático de binarios.
 
